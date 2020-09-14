@@ -5,7 +5,7 @@ import * as itemController from "./controllers/itemController"
 export const app = express()
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost:27017/typescript', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/typescript', {useNewUrlParser: true,  useUnifiedTopology: true, useCreateIndex: true});
 
 app.get("/",(req: Request, res: Response, next: NextFunction) => {
     res.json({message:"hello world"})
