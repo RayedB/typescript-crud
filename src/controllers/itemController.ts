@@ -1,17 +1,19 @@
 import { Request,Response } from "express"
-import Item, { IItem } from '../models/item.schema';
+import MenuItem, {SavedItemDocument} from '../schemas/item.schema';
+import { Item } from '../interfaces/item.interface'
 
 
 export const getItem = (req: Request, res: Response) => {
     res.send("item")
 }
 export const createItem = (req: Request, res: Response) => {
-
-    Item.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email
-    }).then((data: IItem) => {
+    const newItem: Item = {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        image: req.body.image
+    }
+    MenuItem.create(newItem).then((data: SavedItemDocument) => {
         res.status(200).json(data)
         
     }).catch((error: Error) => {
